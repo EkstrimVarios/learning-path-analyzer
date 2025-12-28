@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -32,11 +34,11 @@ jobs:
         name: weekly-learning-report
         path: reports/
 
-    - name: Commit report to reports/ branch (optional)
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git checkout -b reports || git checkout reports
-        git add reports/
-        git commit -m "Auto-update weekly report [$(date)]" || echo "No changes"
-        git push origin reports --force
+    # - name: Commit report to reports/ branch (optional)
+    #   run: |
+    #     git config --global user.name "github-actions[bot]"
+    #     git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    #     git checkout -b reports || git checkout reports
+    #     git add reports/
+    #     git commit -m "Auto-update weekly report [$(date)]" || echo "No changes"
+    #     git push origin reports --force
