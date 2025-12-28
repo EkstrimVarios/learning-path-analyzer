@@ -1,21 +1,47 @@
-# Learning Path Analyzer
-![Tests](https://github.com/EkstrimVarios/learning-path-analyzer/workflows/Tests%20and%20Code%20Quality/badge.svg)
-![Weekly Report](https://github.com/EkstrimVarios/learning-path-analyzer/workflows/Weekly%20Learning%20Report/badge.svg)
+# 📈 Learning Path Analyzer  
+> *Data-driven insights into how students learn — and how to help them succeed*
 
-## Description
-Система анализа пути обучения студента на основе логов LMS (Moodle, Canvas и др.).  
-Определяет, какие типы активностей (входы, сдача заданий, форумы, тесты) **наиболее сильно коррелируют с высокой успеваемостью**, и даёт персонализированные рекомендации.
+[![Tests](https://github.com/EkstrimVarios/learning-path-analyzer/workflows/Tests%20and%20Code%20Quality/badge.svg)](https://github.com/EkstrimVarios/learning-path-analyzer/actions?query=workflow%3A%22Tests+and+Code+Quality%22)
+[![Weekly Report](https://github.com/EkstrimVarios/learning-path-analyzer/workflows/Weekly%20Learning%20Report/badge.svg)](https://github.com/EkstrimVarios/learning-path-analyzer/actions?query=workflow%3A%22Weekly+Learning+Report%22)
 
-## Installation
+---
 
-### Prerequisites
+## 🎯 Почему это важно?
+
+В современных системах дистанционного обучения (Moodle, Canvas, Google Classroom) каждый клик студента оставляет цифровой след.  
+Но **не все действия одинаково полезны**: один студент тратит часы на форумы и получает 95 баллов, другой — безрезультатно листает материалы и еле сдаёт на 60.
+
+**Learning Path Analyzer** превращает хаотичные логи в **персонализированные рекомендации**:  
+> _«Для студентов с вашим профилем наиболее эффективна регулярная сдача заданий в первые 48 часов после публикации»_  
+> _«Участие в обсуждениях повышает вашу итоговую оценку в среднем на 12%»_
+
+Это не просто отчёт — это **первый шаг к адаптивному обучению**.
+
+---
+
+## 🧠 Что делает проект?
+
+- 📥 Парсит LMS-логи (`student_id`, `event_type`, `timestamp`, `final_grade`)
+- 🔍 Нормализует события: `login` → "авторизация", `submit` → "сдача задания", `post` → "форум", `attempt` → "тест"
+- 📊 Анализирует корреляцию между типами активностей и итоговой успеваемостью
+- 📈 Генерирует визуализации:  
+  - Интерактивный график (Plotly)  
+  - Текстовый отчёт с рекомендациями
+- ⏱️ Работает в CI/CD: еженедельный автозапуск + публикация отчёта как артефакта
+
+---
+
+## 🚀 Быстрый старт
+
+### Требования
 - Python 3.8+
-- pip
+- `pip`
 
-### Setup
+### Установка
 ```bash
 git clone https://github.com/EkstrimVarios/learning-path-analyzer
 cd learning-path-analyzer
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+# source venv/bin/activate      # Linux/macOS
+# venv\Scripts\activate       # Windows
 pip install -r requirements.txt
