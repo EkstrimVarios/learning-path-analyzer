@@ -72,7 +72,6 @@ def test_invalid_event_type():
 
     try:
         analyzer = LearningPathAnalyzer(temp_path)
-        # Неизвестные события должны попадать в "other"
         assert analyzer.df["activity"].iloc[0] == "other"
     finally:
         os.unlink(temp_path)
