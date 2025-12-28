@@ -1,4 +1,6 @@
 # Learning Path Analyzer
+![Tests](https://github.com/EkstrimVarios/learning-path-analyzer/workflows/Tests%20and%20Code%20Quality/badge.svg)
+![Weekly Report](https://github.com/EkstrimVarios/learning-path-analyzer/workflows/Weekly%20Learning%20Report/badge.svg)
 
 ## Description
 Система анализа пути обучения студента на основе логов LMS (Moodle, Canvas и др.).  
