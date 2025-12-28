@@ -18,8 +18,12 @@ class LearningPathAnalyzer:
         return by_activity
 
     def correlation_with_grades(self):
-        # Псевдо-корреляция по количеству событий
+        # Считаем долю каждого типа активности для студента
         activity_counts = self.df.groupby(["student_id", "activity"]).size().unstack(fill_value=0)
+        total_activities = activity_counts.sum(axis=1)
+        activity_ratio = activity_counts.div(total_activities, axis=0)
+
         grades = self.df.groupby("student_id")["grade"].mean()
-        merged = activity_counts.join(grades)
+        merged = activity_ratio.join(grades)
+
         return merged.corr()["grade"].drop("grade")
