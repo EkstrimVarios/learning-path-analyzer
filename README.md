@@ -45,3 +45,7 @@ python -m venv venv
 # source venv/bin/activate      # Linux/macOS
 # venv\Scripts\activate       # Windows
 pip install -r requirements.txt
+
+# Устанавливаем проект в editable-режиме (с учётом pyproject.toml)
+pip install -e .
+python scripts/generate_report.py
