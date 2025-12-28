@@ -1,0 +1,41 @@
+name: Weekly Learning Report
+
+on:
+  schedule:
+    - cron: '0 2 * * 1'  # Every Monday at 2 AM UTC
+  workflow_dispatch:
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Generate report
+      run: |
+        python scripts/generate_report.py
+
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: weekly-learning-report
+        path: reports/
+
+    - name: Commit report to reports/ branch (optional)
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git checkout -b reports || git checkout reports
+        git add reports/
+        git commit -m "Auto-update weekly report [$(date)]" || echo "No changes"
+        git push origin reports --force
